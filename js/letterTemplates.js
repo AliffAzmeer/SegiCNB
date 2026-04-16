@@ -268,6 +268,7 @@ function renderSnLetter(row, lang) {
   const noticePeriod = pick(row, "Notice Period");
   const clause = pick(row, "Clause", "Contract Clause");
   const totalDeduction = pick(row, "Total deduction");
+  const totalPaidAmount = pick(row, "Total Paid Amount");
   const alBalance = pick(row, "AL Balance");
   const shortNoticeBalance = pick(row, "SN Balance");
   const overtakenAl = pick(row, "Overtaken AL");
@@ -276,6 +277,7 @@ function renderSnLetter(row, lang) {
   const medicalEnt = pick(row, "Medical Entitlement Earned", "Medical Entitlement (RM)");
   const overtakenMedical = pick(row, "Overtaken Medical");
   const totalDeductionMoney = formatMoney(totalDeduction);
+  const totalPaidAmountMoney = formatMoney(totalPaidAmount);
   const overtakenAlAmtMoney = formatMoney(overtakenAlAmt);
   const medicalUsedMoney = formatMoney(medicalUsed);
   const medicalEntMoney = formatMoney(medicalEnt);
@@ -285,7 +287,7 @@ function renderSnLetter(row, lang) {
   const account = pick(row, "Account");
   const defaultAccountName = isBM ? "Dmart Segi Sdn Bhd" : "Segi Cash & Carry Sdn Bhd";
   const accountName = pick(row, "Account Name", "Nama Syarikat", "Company") || defaultAccountName;
-  const email = pick(row, "Receipt Email", "Email");
+  const receiptEmail = "cnb_hr@segigroup.com";
 
   const subject = isBM ? "PERKARA: TUNTUTAN INDEMNITI GAJI SEBAGAI GANTI NOTIS" : "SUBJECT: INDEMNITY SALARY IN LIEU";
 
@@ -296,7 +298,7 @@ function renderSnLetter(row, lang) {
       <p>Walau bagaimanapun, tempoh notis yang diberikan adalah tidak mencukupi sebanyak <b>${esc(shortNoticeBalance || "0")}</b> hari. Sehubungan itu, pelarasan telah dibuat seperti berikut:</p>
       <div class="lt-sn-bm-rows">
         <div class="lt-sn-bm-row"><span class="lt-sn-bm-label"><b>Cuti Tahunan</b></span><span class="lt-sn-bm-colon">:</span><span class="lt-sn-bm-value"><b>${esc(alBalance || "0")}</b> day(s) (Digunakan untuk mengimbangi tempoh notis)</span></div>
-        <div class="lt-sn-bm-row"><span class="lt-sn-bm-label"><b>Baki Ganti Notis</b></span><span class="lt-sn-bm-colon">:</span><span class="lt-sn-bm-value"><b>${esc(shortNoticeBalance || "0")}</b> day(s) / <b>RM${esc(totalDeductionMoney)}</b></span></div>
+        <div class="lt-sn-bm-row"><span class="lt-sn-bm-label"><b>Baki Ganti Notis</b></span><span class="lt-sn-bm-colon">:</span><span class="lt-sn-bm-value"><b>${esc(shortNoticeBalance || "0")}</b> day(s) / <b>RM${esc(totalPaidAmountMoney)}</b></span></div>
         <div class="lt-sn-bm-row"><span class="lt-sn-bm-label"><b>Cuti Tahunan Melebihi Kelayakan</b></span><span class="lt-sn-bm-colon">:</span><span class="lt-sn-bm-value"><b>${esc(overtakenAl || "0")}</b> day(s)/<b>RM${esc(overtakenAlAmtMoney)}</b></span></div>
         <div class="lt-sn-bm-row"><span class="lt-sn-bm-label"><b>MiCare</b></span><span class="lt-sn-bm-colon">:</span><span class="lt-sn-bm-value">RM${esc(overtakenMedicalMoney)} (Potongan)</span></div>
         <div class="lt-sn-bm-subline">(Kelayakan MiCare:<b>RM${esc(medicalEntMoney)}</b>; Jumlah penggunaan:<b>RM${esc(medicalUsedMoney)}</b>)</div>
@@ -314,7 +316,7 @@ function renderSnLetter(row, lang) {
           </tr>
           <tr>
             <td class="lt-sn-label"><b>Short Notice Balance</b></td>
-            <td class="lt-sn-value">: <b>${esc(shortNoticeBalance || "0")}</b> day(s) / <b>RM${esc(totalDeductionMoney)}</b></td>
+            <td class="lt-sn-value">: <b>${esc(shortNoticeBalance || "0")}</b> day(s) / <b>RM${esc(totalPaidAmountMoney)}</b></td>
           </tr>
           <tr>
             <td class="lt-sn-label"><b>Overtaken Annual Leave</b></td>
@@ -350,9 +352,9 @@ function renderSnLetter(row, lang) {
     `;
 
   const receipt = isBM
-    ? `<p>Setelah bayaran dibuat, sila emelkan resit pembayaran ke <b>${esc(email)}</b> untuk tujuan rekod.</p>
+    ? `<p>Setelah bayaran dibuat, sila emelkan resit pembayaran ke <b>${esc(receiptEmail)}</b> untuk tujuan rekod.</p>
        <p>Sekian, terima kasih.</p>`
-    : `<p>Kindly forward the payment receipt to <b>${esc(email)}</b> upon completion of the transaction for our record purposes.</p>`;
+    : `<p>Kindly forward the payment receipt to <b>${esc(receiptEmail)}</b> upon completion of the transaction for our record purposes.</p>`;
 
   return `
     <div class="${pageClass}">

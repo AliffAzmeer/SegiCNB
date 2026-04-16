@@ -1,0 +1,12 @@
+{
+  "name": "hr-autoletter-system",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static HR letter generator with live reload for local development.",
+  "scripts": {
+    "dev": "live-server --port=5500 --host=127.0.0.1 --open=/index.html --watch=./ --ignore=node_modules"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

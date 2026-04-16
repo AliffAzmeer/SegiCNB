@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR Letter System</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+</head>
+
+
+
+<body>
+
+<div class="container">    
+    
+    <div class="header">
+        <h1>HR Letter System</h1>
+        <p>Upload Excel → Auto Generate Letter → Email / Print (Save as PDF)</p>
+    </div>
+    
+    <div class="dashboard-grid">
+
+        <div class="stat-card">
+            <h3>Total Staff</h3>
+            <h2 id="totalStaff">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <h3>FN</h3>
+            <h2 id="totalFN">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <h3>SN</h3>
+            <h2 id="totalSN">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <h3>Status</h3>
+            <h2 id="systemStatus">Ready</h2>
+        </div>
+
+    </div>
+
+
+    <div class="card">
+        <div class="controls">
+
+            <input type="file" id="excelFile" accept=".xlsx,.xls,.xlsm">
+
+            <input type="text" id="searchBox" placeholder="Search Name / Staff ID">
+
+            <select id="statusFilter">
+                <option value="FN">FN</option>
+                <option value="SN">SN</option>
+            </select>
+
+            <button onclick="renderTable()">Refresh</button>
+
+        </div>
+    </div>
+
+    <div class="card">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Reference</th>
+                    <th>Staff ID</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="tableBody"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<div class="modal" id="modal">
+
+    <div class="modal-box">
+
+        <h2>Letter Preview</h2>
+
+        <div id="printArea"></div>
+
+        <div class="modal-footer">
+            <button class="btn-email" onclick="sendEmail()">📧 Send Email</button>
+            <button class="btn-pdf" onclick="downloadPDF()">📄 Print / Save as PDF</button>
+            <button class="btn-print" onclick="printLetter()">🖨 Print</button>
+            <button class="btn-close" onclick="closeModal()">❌ Close</button>
+        </div>
+        <p class="print-tip" style="margin-top:10px;font-size:12px;color:#374151;">
+            Print tip: uncheck browser print "Headers and footers" for clean letter output.
+        </p>
+
+    </div>
+
+</div>
+
+<script src="js/letterTemplates.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>

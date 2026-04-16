@@ -1,28 +1,13 @@
 # HR_AutoLetter_System
 
 Client-side HR letter generator:
-
+- https://liveiiumedu-my.sharepoint.com/:x:/r/personal/aliff_azmeer_live_iium_edu_my/Documents/SeGI%20wORK/Mail%20Merge%20Resignation-DESKTOP-1U2T27C.xlsm?d=w5a02170dd27d4c8890dea4fcc0748ee5&csf=1&web=1&e=aoiq4e
+- Use link above for the template to upload to the system
 - Upload Excel (`.xlsx/.xls/.xlsm`)
 - Browse/filter staff list
 - Auto-generate a resignation-related letter (preview)
 - Export via email draft (`mailto:`) and browser print (Save as PDF)
 
-## Live reload for layout editing
-
-Use this when you are tuning letter layout and want browser updates on every save.
-
-1. Install Node.js (if not installed yet).
-2. Open terminal in [`HR_AutoLetter_System`](c:/Users/USER/Desktop/HR_AutoLetter_System/HR_AutoLetter_System)
-3. Run:
-   - `npm install`
-   - `npm run dev`
-4. The app opens at [http://127.0.0.1:5500](http://127.0.0.1:5500) with auto-refresh enabled.
-
-Tip: keep this dev server running while editing `index.html`, `css/style.css`, `js/script.js`, or `js/letterTemplates.js`.
-
-## How it works (current behavior)
-
-### Excel sheet selection
 
 When you upload a workbook, the app tries to read:
 

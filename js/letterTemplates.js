@@ -106,35 +106,6 @@ function renderHeaderBlock(row, lang) {
   `;
 }
 
-function renderSignatureBlock(lang) {
-  // Fixed as per user confirmation.
-  const isBM = lang === "BM";
-  return `
-    <div class="lt-signoff">
-      <div>${isBM ? "Yang Benar," : "Yours sincerely,"}</div>
-      <div class="lt-company-line"><b>${isBM ? "Dmart Segi Sdn Bhd" : "Ehsan Segi Sdn Bhd"}</b></div>
-    </div>
-
-    <div class="lt-signer">
-      <div><b>NOR ZAINI BINTI SAMAT</b></div>
-      <div>Senior Manager, People Analytics & Rewards</div>
-      <div>${isBM ? "Kumpulan Sumber Manusia" : "Group Human Resources"}</div>
-    </div>
-  `;
-}
-
-function renderAckFooter(lang) {
-  const isBM = lang === "BM";
-  return `
-    <div class="lt-ack">
-      <div class="lt-ack-sign">
-        <div>${isBM ? "Tandatangan:" : "Signature:"}</div>
-        <div>${isBM ? "Tarikh:" : "Date:"}</div>
-      </div>
-    </div>
-  `;
-}
-
 function renderFnLetter(row, lang) {
   const isBM = lang === "BM";
   const pageClass = `lt-page${isBM ? " lt-fn-bm" : ""}`;
@@ -243,8 +214,6 @@ function renderFnLetter(row, lang) {
         ${claims}
         ${closing}
       </div>
-      ${renderSignatureBlock(lang)}
-      ${renderAckFooter(lang)}
     </div>
   `;
 }
@@ -358,8 +327,6 @@ function renderSnLetter(row, lang) {
         ${paymentDetails}
         ${receipt}
       </div>
-      ${renderSignatureBlock(lang)}
-      ${renderAckFooter(lang)}
     </div>
   `;
 }

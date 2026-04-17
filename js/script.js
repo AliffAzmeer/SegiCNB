@@ -355,7 +355,7 @@ kindly find the attachment regarding your Acceptance of Resignation for your per
 Regard,`;
 
     window.location.href =
-        `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        `mailto:${email}?cc=cnb_hr@segigroup.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 function downloadPDF() {

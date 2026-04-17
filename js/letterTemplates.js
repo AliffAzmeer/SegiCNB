@@ -214,6 +214,8 @@ function renderFnLetter(row, lang) {
         ${claims}
         ${closing}
       </div>
+      ${renderSignatureBlock(lang)}
+      ${renderAckFooter(lang)}
     </div>
   `;
 }
@@ -327,6 +329,8 @@ function renderSnLetter(row, lang) {
         ${paymentDetails}
         ${receipt}
       </div>
+      ${renderSignatureBlock(lang)}
+      ${renderAckFooter(lang)}
     </div>
   `;
 }

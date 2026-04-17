@@ -114,6 +114,7 @@ function renderSignatureBlock(lang) {
       <div>${isBM ? "Yang Benar," : "Yours sincerely,"}</div>
       <div class="lt-company-line"><b>${isBM ? "Dmart Segi Sdn Bhd" : "Ehsan Segi Sdn Bhd"}</b></div>
     </div>
+    <br>
 
     <div class="lt-signer">
       <div><b>NOR ZAINI BINTI SAMAT</b></div>
@@ -129,11 +130,6 @@ function renderAckFooter(lang) {
     <div class="lt-ack">
       <div class="lt-ack-line"></div>
       <div class="lt-ack-row">
-        <div class="lt-ack-text">
-          ${isBM
-            ? "Saya, ________________________________________, No. K/P __________________________________ dengan ini mengakui dan menerima terma dan syarat yang dinyatakan dalam surat ini."
-            : "I, ________________________________  I/C No: ____________________  hereby acknowledge and accept the terms and conditions stated in this letter."}
-        </div>
       </div>
       <div class="lt-ack-sign">
         <div>${isBM ? "Tandatangan:" : "Signature:"}</div>

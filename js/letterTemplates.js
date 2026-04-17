@@ -114,7 +114,6 @@ function renderSignatureBlock(lang) {
       <div>${isBM ? "Yang Benar," : "Yours sincerely,"}</div>
       <div class="lt-company-line"><b>${isBM ? "Dmart Segi Sdn Bhd" : "Ehsan Segi Sdn Bhd"}</b></div>
     </div>
-    <br>
 
     <div class="lt-signer">
       <div><b>NOR ZAINI BINTI SAMAT</b></div>
@@ -223,7 +222,6 @@ function renderFnLetter(row, lang) {
       <p>Pihak kami merakamkan penghargaan atas segala jasa dan sumbangan anda sepanjang tempoh perkhidmatan dan mengucapkan selamat maju jaya dalam apa jua bidang yang diceburi pada masa hadapan.</p>
       <p>Sekian, terima kasih.</p>
     `
-    <br>
     : `
       <p class="lt-final-heading"><b>Final Payment &amp; Handover:</b></p>
       <p>Your final salary will be calculated up to your last day, less any monies owing to the Company. Final payment is subject to the following:</p>

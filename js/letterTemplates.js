@@ -106,16 +106,25 @@ function renderHeaderBlock(row, lang) {
   `;
 }
 
-function renderAckFooter(lang) {
+function renderSignatureBlock(lang, row) {
   const isBM = lang === "BM";
+  const company = pick(row, "Company");
   return `
-    <div class="lt-ack">
-      <div class="lt-ack-sign">
-        <div>${isBM ? "Tandatangan:" : "Signature:"}</div>
-        <div>${isBM ? "Tarikh:" : "Date:"}</div>
-      </div>
+    <div class="lt-signoff">
+      <div>${isBM ? "Yang Benar," : "Yours sincerely,"}</div>
+      <div class="lt-company-line"><b>${esc(company)}</b></div>
+    </div>
+    <br>
+    <div class="lt-signer">
+      <div><b>NOR ZAINI BINTI SAMAT</b></div>
+      <div>Senior Manager, People Analytics & Rewards</div>
+      <div>${isBM ? "Kumpulan Sumber Manusia" : "Group Human Resources"}</div>
     </div>
   `;
+}
+
+function renderAckFooter(lang) {
+  return "";
 }
 
 function renderFnLetter(row, lang) {
@@ -226,7 +235,7 @@ function renderFnLetter(row, lang) {
         ${claims}
         ${closing}
       </div>
-      ${renderSignatureBlock(lang)}
+      ${renderSignatureBlock(lang, row)}
       ${renderAckFooter(lang)}
     </div>
   `;
@@ -341,7 +350,7 @@ function renderSnLetter(row, lang) {
         ${paymentDetails}
         ${receipt}
       </div>
-      ${renderSignatureBlock(lang)}
+      ${renderSignatureBlock(lang, row)}
       ${renderAckFooter(lang)}
     </div>
   `;

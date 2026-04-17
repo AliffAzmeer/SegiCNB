@@ -106,6 +106,18 @@ function renderHeaderBlock(row, lang) {
   `;
 }
 
+function renderAckFooter(lang) {
+  const isBM = lang === "BM";
+  return `
+    <div class="lt-ack">
+      <div class="lt-ack-sign">
+        <div>${isBM ? "Tandatangan:" : "Signature:"}</div>
+        <div>${isBM ? "Tarikh:" : "Date:"}</div>
+      </div>
+    </div>
+  `;
+}
+
 function renderFnLetter(row, lang) {
   const isBM = lang === "BM";
   const pageClass = `lt-page${isBM ? " lt-fn-bm" : ""}`;

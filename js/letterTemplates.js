@@ -197,7 +197,7 @@ function renderFnLetter(row, lang) {
             </tr>
             <tr>
               <td class="lt-fn-bm-label"><b>Cuti Tahunan melebihi kelayakan</b></td>
-              <td class="lt-fn-bm-value">: <b>${esc(overtakenAlDays || "0")}</b> day(s)/<b>RM${esc(overtakenAlAmtMoney)}</b></td>
+              <td class="lt-fn-bm-value">: <b>${esc(overtakenAlDays || "0")}</b> hari/<b>RM${esc(overtakenAlAmtMoney)}</b></td>
             </tr>
           </tbody>
         </table>

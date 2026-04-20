@@ -117,7 +117,7 @@ function renderHeaderBlock(row, lang) {
 
     <div class="lt-recipient">
       <div class="lt-recipient-name"><b>${esc(name)} (${esc(staff)})</b></div>
-      <div class="lt-recipient-ic">${esc(icLabel)}: ${esc(ic)}</div>
+      <div class="lt-recipient-ic"><b>${esc(icLabel)}: ${esc(ic)}</b></div>
       <div class="lt-recipient-address">${formatAddressHtml(roadDistrict, postcodeArea)}</div>
     </div>
   `;
@@ -134,7 +134,7 @@ function renderSignatureBlock(lang, row) {
     <br>
     <div class="lt-signer">
       <div><b>NOR ZAINI BINTI SAMAT</b></div>
-      <div>Senior Manager, People Analytics & Rewards</div>
+      <div>${isBM ? "Pengurus Kanan, People Analytics & Rewards" : "Senior Manager, People Analytics & Rewards"}</div>
       <div>${isBM ? "Kumpulan Sumber Manusia" : "Group Human Resources"}</div>
     </div>
   `;
@@ -351,7 +351,7 @@ function renderSnLetter(row, lang) {
     : `
       <p>You are required to make the indemnity payment via Online Transfer (IBG or DuitNow) to the following account:</p>
       <div class="lt-pay-rows">
-        <div class="lt-pay-row"><span class="lt-pay-label">Total Need to Pay</span><span class="lt-pay-colon">:</span><span class="lt-pay-value">RM${esc(totalDeductionMoney)}</span></div>
+        <div class="lt-pay-row"><span class="lt-pay-label">Total Need to Pay</span><span class="lt-pay-colon">:</span><span class="lt-pay-value"><b>RM${esc(totalDeductionMoney)}</b></span></div>
         <div class="lt-pay-row"><span class="lt-pay-label">Account Name</span><span class="lt-pay-colon">:</span><span class="lt-pay-value"><b>${esc(accountName)}</b></span></div>
         <div class="lt-pay-row"><span class="lt-pay-label">Name Bank</span><span class="lt-pay-colon">:</span><span class="lt-pay-value"><b>${esc(bank)}</b></span></div>
         <div class="lt-pay-row"><span class="lt-pay-label">Account Number</span><span class="lt-pay-colon">:</span><span class="lt-pay-value"><b>${esc(account)}</b></span></div>

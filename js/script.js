@@ -23,7 +23,7 @@ function loadUiState() {
 function saveUiState() {
     const state = {
         search: searchBox.value || "",
-        status: statusFilter.value === "SN" ? "SN" : "FN"
+        status: statusFilter.value
     };
     localStorage.setItem(UI_STATE_KEY, JSON.stringify(state));
 }
@@ -33,7 +33,7 @@ function restoreUiState() {
     if (typeof state.search === "string") {
         searchBox.value = state.search;
     }
-    if (state.status === "SN" || state.status === "FN") {
+    if (state.status === "SN" || state.status === "FN" || state.status === "ALL") {
         statusFilter.value = state.status;
     }
 }
@@ -243,7 +243,7 @@ function getValue(row, key) {
 function renderTable() {
 
     const keyword = searchBox.value.toLowerCase().trim();
-    const filter  = statusFilter.value === "SN" ? "SN" : "FN";
+    const filter = statusFilter.value;
 
     tableBody.textContent = "";
 
@@ -259,7 +259,7 @@ function renderTable() {
         const matchSearch =
             (staff + " " + name).toLowerCase().includes(keyword);
 
-        const matchFilter = status === filter;
+        const matchFilter = filter === "ALL" || status === filter;
 
         if (!matchSearch || !matchFilter) return;
 
@@ -354,7 +354,7 @@ kindly find the attachment regarding your Acceptance of Resignation for your per
 
 Regard,`;
 
-    window.location.href =
+window.location.href =
         `mailto:${email}?cc=cnb_hr@segigroup.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
@@ -408,3 +408,10 @@ function updateDashboard(){
 
 restoreUiState();
 renderTable();
+window.renderTable = renderTable;
+
+document.getElementById("refreshBtn").addEventListener("click", function() {
+    searchBox.value = "";
+    statusFilter.value = "ALL";
+    renderTable();
+});

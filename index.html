@@ -18,7 +18,7 @@
     
     <div class="header">
         <h1>HR Letter System</h1>
-        <p>Upload Excel → Auto Generate Letter → Email / Print (Save as PDF)</p>
+        <p>Upload Excel → Auto Generate Letter → Email / Print</p>
     </div>
     
     <div class="dashboard-grid">
@@ -54,11 +54,12 @@
             <input type="text" id="searchBox" placeholder="Search Name / Staff ID">
 
             <select id="statusFilter">
+                <option value="ALL">All</option>
                 <option value="FN">FN</option>
                 <option value="SN">SN</option>
             </select>
 
-            <button onclick="renderTable()">Refresh</button>
+                <button id="refreshBtn">Refresh</button>
 
         </div>
     </div>

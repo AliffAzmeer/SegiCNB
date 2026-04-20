@@ -154,7 +154,7 @@ function renderFnLetter(row, lang) {
 
   const body = isBM
     ? `
-      <p>Merujuk kepada surat peletakan jawatan anda yang kami terima pada <b>${esc(dateReceived)}</b>. Dimaklumkan bahawa peletakan jawatan anda sebagai <b>${esc(position)}</b> di ${esc(branch)} adalah dengan ini diterima.</p>
+      <p>Merujuk kepada surat peletakan jawatan anda yang kami terima pada <b>${esc(dateReceived)}</b>. Dimaklumkan bahawa peletakan jawatan anda sebagai <b>${esc(position)}</b> di <b>${esc(branch)}</b> adalah dengan ini diterima.</p>
       <p>Hari terakhir perkhidmatan rasmi anda adalah pada <b>${esc(lwd)}</b>.</p>
       <p>Cuti &amp; Faedah Perubatan:</p>
     `

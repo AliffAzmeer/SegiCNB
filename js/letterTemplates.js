@@ -74,6 +74,23 @@ function isBahasa(row) {
   return pick(row, "Company").toLowerCase().includes("dmart");
 }
 
+function getLetterheadImage(row) {
+  const company = pick(row, "Company").toLowerCase();
+  const map = {
+    "segi cash & carry": "SCC Letterhead_page-0001.jpg",
+    "segi logistics":    "SL Letterhead_page-0001.jpg",
+    "dmart segi":        "DMS Letterhead_page-0001.jpg",
+    "ehsan segi":        "EHS Letterhead_page-0001.jpg",
+    "segi value":        "SVH letterhead_page-0001.jpg",
+    "segi marine":       "SME Letterhead_page-0001.jpg",
+    "segi realty":       "SR Letterhead_page-0001.jpg",
+  };
+  for (const key in map) {
+    if (company.includes(key)) return map[key];
+  }
+  return null;
+}
+
 function renderHeaderBlock(row, lang) {
   const isBM = lang === "BM";
   const refLabel = isBM ? "RUJUKAN" : "REFERENCE";
@@ -225,8 +242,14 @@ function renderFnLetter(row, lang) {
       <p>Thank you.</p>
     `;
 
+  const letterhead = getLetterheadImage(row);
+  const letterheadHtml = letterhead
+  ? `<div class="lt-letterhead"><img src="assets/${letterhead}"></div>`
+    : "";
+
   return `
-    <div class="${pageClass}">
+      <div class="${pageClass}">
+      ${letterheadHtml}
       ${renderHeaderBlock(row, lang)}
       <div class="lt-salutation">${salutation}</div>
       <div class="lt-subject"><b>${subject}</b></div>
@@ -340,8 +363,14 @@ function renderSnLetter(row, lang) {
        <p>Sekian, terima kasih.</p>`
     : `<p>Kindly forward the payment receipt to <b>${esc(receiptEmail)}</b> upon completion of the transaction for our record purposes.</p>`;
 
+    const letterhead = getLetterheadImage(row);
+    const letterheadHtml = letterhead
+    ? `<div class="lt-letterhead"><img src="assets/${letterhead}"></div>`
+    : "";
+
   return `
     <div class="${pageClass}">
+      ${letterheadHtml}
       ${renderHeaderBlock(row, lang)}
       <div class="lt-salutation">${salutation}</div>
       <div class="lt-subject"><b>${subject}</b></div>

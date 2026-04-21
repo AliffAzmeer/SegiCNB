@@ -131,8 +131,8 @@ function renderSignatureBlock(lang, row) {
       <div>${isBM ? "Yang Benar," : "Yours sincerely,"}</div>
       <div class="lt-company-line"><b>${esc(company)}</b></div>
     </div>
-    <br>
     <div class="lt-signer">
+      <img src="assets/signature.png" style="height:60px; width:auto; display:block; margin-bottom:4px;">
       <div><b>NOR ZAINI BINTI SAMAT</b></div>
       <div>${isBM ? "Pengurus Kanan, People Analytics & Rewards" : "Senior Manager, People Analytics & Rewards"}</div>
       <div>${isBM ? "Kumpulan Sumber Manusia" : "Group Human Resources"}</div>

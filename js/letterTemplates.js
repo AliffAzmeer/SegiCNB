@@ -70,6 +70,18 @@ function pick(row, ...keys) {
   return "";
 }
 
+function formatNoticePeriod(value, lang) {
+  const v = String(value).trim();
+  const isBM = lang === "BM";
+  if (v === "14") {
+    return isBM ? "empat belas (14) hari" : "fourteen (14) days";
+  } else if (v === "2") {
+    return isBM ? "dua (2) bulan" : "two (2) months";
+  } else {
+    return isBM ? `satu (${v}) bulan` : `one (${v}) month`;
+  }
+}
+
 function isBahasa(row) {
   return pick(row, "Company").toLowerCase().includes("dmart");
 }
@@ -301,7 +313,7 @@ function renderSnLetter(row, lang) {
   const body = isBM
     ? `
       <p>Merujuk kepada surat peletakan jawatan anda, dimaklumkan bahawa tarikh akhir perkhidmatan anda adalah pada <b>${esc(lwd)}</b>.</p><br>
-      <p>Berdasarkan <b>Klausa (${esc(clause)}): Penamatan Perkhidmatan dalam Surat Pelantikan</b>, anda dikehendaki memberikan <b>notis satu (${esc(noticePeriod)}) bulan atau membayar satu (${esc(noticePeriod)}) bulan gaji</b> sebagai ganti notis sekiranya ingin meletakkan jawatan.</p><br>
+      <p>Berdasarkan <b>Klausa (${esc(clause)}): Penamatan Perkhidmatan dalam Surat Pelantikan</b>, anda dikehendaki memberikan <b>${formatNoticePeriod(noticePeriod, "BM")} notis atau membayar ${formatNoticePeriod(noticePeriod, "BM")} gaji</b> sebagai ganti notis sebagai ganti notis sekiranya ingin meletakkan jawatan.</p><br>
       <p>Walau bagaimanapun, tempoh notis yang diberikan adalah tidak mencukupi sebanyak <b>${esc(shortNoticeBalance || "0")}</b> hari. Sehubungan itu, pelarasan telah dibuat seperti berikut:</p>
       <div class="lt-sn-bm-rows">
         <div class="lt-sn-bm-row"><span class="lt-sn-bm-label"><b>Cuti Tahunan</b></span><span class="lt-sn-bm-colon">:</span><span class="lt-sn-bm-value"><b>${esc(alBalance || "0")}</b> hari (Digunakan untuk mengimbangi tempoh notis)</span></div>
@@ -313,7 +325,7 @@ function renderSnLetter(row, lang) {
     `
     : `
       <p>We refer to your resignation letter and your official last day of service on <b>${esc(lwd)}</b>.</p>
-      <p>As stipulated in <b>Clause (${esc(clause)}): Termination of Employment of your Letter of Appointment</b>, you are required to serve <b>one (${esc(noticePeriod)}) month's notice or one (${esc(noticePeriod)}) month's salary</b> in lieu upon resignation.</p>
+      <p>As stipulated in <b>Clause (${esc(clause)}): Termination of Employment of your Letter of Appointment</b>, you are required to serve <b>${formatNoticePeriod(noticePeriod, "EN")} notice or ${formatNoticePeriod(noticePeriod, "EN")} salary</b> in lieu in lieu upon resignation.</p>
       <p>As your resignation notice is short, the Company has applied your leave balance and any applicable deductions to settle the notice period as follows:</p>
       <table class="lt-sn-table">
         <tbody>

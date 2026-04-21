@@ -134,7 +134,7 @@ th{
     font-size:11pt;
     line-height:1.45;
     width:100%;
-    max-width:178mm;
+    max-width:186mm;
     margin:0 auto;
     padding:0;
     page-break-inside:avoid;
@@ -347,7 +347,7 @@ th{
 }
 
 .lt-signer{
-    margin-top:30px;
+    margin-top:10px;
     break-inside:avoid;
 }
 
@@ -410,7 +410,7 @@ th{
 }
 
 .lt-page.lt-fn-bm .lt-signer{
-    margin-top:76px;
+    margin-top:10px;
 }
 
 .lt-page.lt-fn-bm .lt-ack{
@@ -477,7 +477,7 @@ th{
 }
 
 .lt-page.lt-sn-bm .lt-signer{
-    margin-top:58px;
+    margin-top:10px;
 }
 
 .lt-page.lt-sn-bm .lt-ack{
@@ -525,7 +525,7 @@ th{
     }
 
     .lt-page{
-        padding: 0 14mm 12mm 14mm;
+        padding: 0 8mm 12mm 8mm;
         min-height: 297mm;
     }
 

@@ -361,25 +361,12 @@ window.location.href =
 function downloadPDF() {
 
     if (!selectedRow) return;
-    const activeFilter = statusFilter.value === "SN" ? "SN" : "FN";
-    const rowStatus = getValue(selectedRow, "Status").toUpperCase();
-    if (rowStatus !== activeFilter) {
-        alert(`Current filter is ${activeFilter}. Please generate a ${activeFilter} letter before printing.`);
-        return;
-    }
-    // GitHub-only mode: use browser print -> Save as PDF
     setSystemStatus("Print to PDF");
     window.print();
 }
 
 function printLetter() {
     if (!selectedRow) return;
-    const activeFilter = statusFilter.value === "SN" ? "SN" : "FN";
-    const rowStatus = getValue(selectedRow, "Status").toUpperCase();
-    if (rowStatus !== activeFilter) {
-        alert(`Current filter is ${activeFilter}. Please generate a ${activeFilter} letter before printing.`);
-        return;
-    }
     window.print();
 }
 

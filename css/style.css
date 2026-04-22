@@ -266,7 +266,7 @@ th{
 }
 
 .lt-sn-table td{
-    border:1px solid #666;
+    border:none;
     padding:2px 8px;
     vertical-align:top;
     line-height:1.25;
@@ -285,7 +285,7 @@ th{
 }
 
 .lt-fn-bm-table td{
-    border:1px solid #666;
+    border:none;
     padding:2px 8px;
     vertical-align:top;
     line-height:1.25;

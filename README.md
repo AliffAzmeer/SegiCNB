@@ -1,8 +1,6 @@
 # HR_AutoLetter_System
 
 Client-side HR letter generator:
-- https://liveiiumedu-my.sharepoint.com/:x:/r/personal/aliff_azmeer_live_iium_edu_my/Documents/SeGI%20wORK/Mail%20Merge%20Resignation-DESKTOP-1U2T27C.xlsm?d=w5a02170dd27d4c8890dea4fcc0748ee5&csf=1&web=1&e=aoiq4e
-- Use link above for the template or download the Template in folder above to upload to the system
 - Upload Excel (`.xlsx/.xls/.xlsm`)
 - Browse/filter staff list
 - Auto-generate a resignation-related letter (preview)

@@ -445,4 +445,3 @@ function renderLetterHtml(row) {
 // Expose globally for script.js
 window.renderLetterHtml = renderLetterHtml;
 window.isBahasa = isBahasa;
-

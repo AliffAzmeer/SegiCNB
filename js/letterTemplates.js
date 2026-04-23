@@ -52,6 +52,34 @@ function formatDateValue(value, mode = "long") {
   }).format(d);
 }
 
+function formatDateBM(value) {
+  const raw = String(value ?? "").trim();
+  if (!raw) return "";
+
+  const bulan = [
+    "", "Januari", "Februari", "Mac", "April", "Mei", "Jun",
+    "Julai", "Ogos", "September", "Oktober", "November", "Disember"
+  ];
+
+  let d = null;
+  if (/^\d{4}-\d{2}-\d{2}/.test(raw)) {
+    d = new Date(raw);
+  } else if (/^\d{1,2}\/\d{1,2}\/\d{2,4}$/.test(raw)) {
+    const parts = raw.split("/");
+    d = new Date(Number(parts[2].length === 2 ? `20${parts[2]}` : parts[2]), Number(parts[1]) - 1, Number(parts[0]));
+  } else {
+    return raw
+      .replace("January", "Januari").replace("February", "Februari")
+      .replace("March", "Mac").replace("May", "Mei")
+      .replace("June", "Jun").replace("July", "Julai")
+      .replace("August", "Ogos").replace("October", "Oktober")
+      .replace("December", "Disember");
+  }
+
+  if (!d || isNaN(d.getTime())) return raw;
+  return `${d.getDate()} ${bulan[d.getMonth() + 1]} ${d.getFullYear()}`;
+}
+
 function formatMoney(value) {
   const raw = String(value ?? "").trim();
   if (!raw) return "0.00";
@@ -162,8 +190,13 @@ function renderFnLetter(row, lang) {
   const firstName = pick(row, "First Name", "First name", "FirstName", "Name");
   const salutation = isBM ? `Tuan/Puan ${esc(firstName)},` : `Dear ${esc(firstName)},`;
 
-  const dateReceived = formatDateValue(pick(row, "Date received", "Date Text", "Date"), "long");
-  const lwd = formatDateValue(pick(row, "LWD", "Last Working Day"), "long");
+const dateReceived = isBM
+  ? formatDateBM(pick(row, "Date received", "Date Text", "Date"))
+  : formatDateValue(pick(row, "Date received", "Date Text", "Date"), "long");
+
+const lwd = isBM
+  ? formatDateBM(pick(row, "LWD", "Last Working Day"))
+  : formatDateValue(pick(row, "LWD", "Last Working Day"), "long");
   const position = pick(row, "Position");
   const branch = pick(row, "Branch");
 
@@ -282,8 +315,13 @@ function renderSnLetter(row, lang) {
   const firstName = pick(row, "First Name", "First name", "FirstName", "Name");
   const salutation = isBM ? `Kepada ${esc(firstName)},` : `Dear ${esc(firstName)},`;
 
-  const lwd = formatDateValue(pick(row, "LWD", "Last Working Day"), "long");
-  const dateReceived = formatDateValue(pick(row, "Date received", "Date Text", "Date"), "long");
+const dateReceived = isBM
+  ? formatDateBM(pick(row, "Date received", "Date Text", "Date"))
+  : formatDateValue(pick(row, "Date received", "Date Text", "Date"), "long");
+
+const lwd = isBM
+  ? formatDateBM(pick(row, "LWD", "Last Working Day"))
+  : formatDateValue(pick(row, "LWD", "Last Working Day"), "long");
   const noticePeriod = pick(row, "Notice Period");
   const clause = pick(row, "Clause", "Contract Clause");
   const totalDeduction = pick(row, "Total deduction");
@@ -313,7 +351,7 @@ function renderSnLetter(row, lang) {
   const body = isBM
     ? `
       <p>Merujuk kepada surat peletakan jawatan anda, dimaklumkan bahawa tarikh akhir perkhidmatan anda adalah pada <b>${esc(lwd)}</b>.</p><br>
-      <p>Berdasarkan <b>Klausa (${esc(clause)}): Penamatan Perkhidmatan dalam Surat Pelantikan</b>, anda dikehendaki memberikan <b>${formatNoticePeriod(noticePeriod, "BM")} notis atau membayar ${formatNoticePeriod(noticePeriod, "BM")} gaji</b> sebagai ganti notis sebagai ganti notis sekiranya ingin meletakkan jawatan.</p><br>
+      <p>Berdasarkan <b>Klausa (${esc(clause)}): Penamatan Perkhidmatan dalam Surat Pelantikan</b>, anda dikehendaki memberikan <b>${formatNoticePeriod(noticePeriod, "BM")} notis atau membayar ${formatNoticePeriod(noticePeriod, "BM")} gaji</b> sebagai ganti notis sekiranya ingin meletakkan jawatan.</p><br>
       <p>Walau bagaimanapun, tempoh notis yang diberikan adalah tidak mencukupi sebanyak <b>${esc(shortNoticeBalance || "0")}</b> hari. Sehubungan itu, pelarasan telah dibuat seperti berikut:</p>
       <div class="lt-sn-bm-rows">
         <div class="lt-sn-bm-row"><span class="lt-sn-bm-label"><b>Cuti Tahunan</b></span><span class="lt-sn-bm-colon">:</span><span class="lt-sn-bm-value"><b>${esc(alBalance || "0")}</b> hari (Digunakan untuk mengimbangi tempoh notis)</span></div>
@@ -325,7 +363,7 @@ function renderSnLetter(row, lang) {
     `
     : `
       <p>We refer to your resignation letter and your official last day of service on <b>${esc(lwd)}</b>.</p>
-      <p>As stipulated in <b>Clause (${esc(clause)}): Termination of Employment of your Letter of Appointment</b>, you are required to serve <b>${formatNoticePeriod(noticePeriod, "EN")} notice or ${formatNoticePeriod(noticePeriod, "EN")} salary</b> in lieu in lieu upon resignation.</p>
+      <p>As stipulated in <b>Clause (${esc(clause)}): Termination of Employment of your Letter of Appointment</b>, you are required to serve <b>${formatNoticePeriod(noticePeriod, "EN")} notice or ${formatNoticePeriod(noticePeriod, "EN")} salary</b> in lieu upon resignation.</p>
       <p>As your resignation notice is short, the Company has applied your leave balance and any applicable deductions to settle the notice period as follows:</p>
       <table class="lt-sn-table">
         <tbody>
